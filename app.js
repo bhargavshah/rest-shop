@@ -35,15 +35,17 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/', (req, res) => {
+  res.status(200).json({
+    msg: 'Success'
+  })
+})
+
 // Routes which should handle requests
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
 app.use("/user", userRoutes);
-app.get('/', (req, res) => {
-  res.json({
-    msg: 'Success'
-  })
-})
+
 app.use((req, res, next) => {
   const error = new Error("Not found");
   error.status = 404;
